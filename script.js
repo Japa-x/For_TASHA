@@ -379,7 +379,7 @@ function revelarMensagem() {
 // Configurar botão do Spotify
 function configurarSpotify() {
     const spotifyButton = document.getElementById('spotifyButton');
-    const spotifyPlaylistUrl = 'https://open.spotify.com/playlist/SUA_PLAYLIST_ID';
+    const spotifyPlaylistUrl = 'https://open.spotify.com/playlist/0IKFNIIHHVow618BF4dkSz?si=LuRJo4IYSyKP7c3uS-6RaA&pi=CXQiIQynReeL0';
     
     spotifyButton.href = spotifyPlaylistUrl;
 }
