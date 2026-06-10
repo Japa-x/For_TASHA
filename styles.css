@@ -1,0 +1,1085 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #8B6F47;
+    --primary-light: #A0845C;
+    --primary-dark: #6B4F2E;
+    --secondary: #F5E6D3;
+    --accent: #C9A87C;
+    --accent-light: #E0C9A6;
+    --text: #4A3728;
+    --text-light: #7A6B5D;
+    --white: #FFFDF9;
+    --bg: #FDF8F1;
+    --bg-gradient: linear-gradient(135deg, #FDF8F1 0%, #F5E6D3 50%, #FDF8F1 100%);
+    --card-bg: #FFFFFF;
+    --gold: #C9A87C;
+    --gold-light: #E0C9A6;
+    --border: #D4C4A8;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Music Control */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.music-icon {
+    font-size: 20px;
+}
+
+.music-control.playing .music-icon {
+    animation: musicPulse 1s ease infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Hearts Container */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: fall linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    animation: fadeInDown 1s ease;
+}
+
+.date-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--white);
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.title-line {
+    display: block;
+    color: var(--text);
+    font-weight: 400;
+}
+
+.title-highlight {
+    display: block;
+    background: linear-gradient(135deg, var(--primary), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.divider {
+    margin: 32px auto;
+    position: relative;
+    width: 200px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 80px;
+    height: 1px;
+    background: var(--accent);
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider-icon {
+    font-size: 24px;
+}
+
+/* Gallery */
+.gallery-section {
+    padding: 40px 0;
+}
+
+.gallery-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--text);
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 0 20px;
+}
+
+.photo-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(139, 111, 71, 0.2);
+}
+
+.photo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(107, 79, 46, 0.15);
+    backdrop-filter: blur(0px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.photo-card:hover .photo-image {
+    transform: scale(1.1);
+    filter: blur(4px) brightness(1.1);
+}
+
+.photo-card:hover .photo-overlay {
+    opacity: 1;
+    backdrop-filter: blur(2px);
+}
+
+.photo-message {
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    transition: transform 0.5s ease;
+    line-height: 1.4;
+}
+
+.photo-card:hover .photo-message {
+    transform: translateY(0);
+}
+
+/* Photo Modal */
+.photo-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    text-align: center;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 8px;
+}
+
+.modal-message {
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 36px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-close:hover {
+    transform: scale(1.2);
+}
+
+/* Spotify Section */
+.spotify-section {
+    padding: 60px 20px;
+}
+
+.spotify-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 48px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+}
+
+.spotify-card:hover {
+    transform: translateY(-4px);
+}
+
+.spotify-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: var(--text);
+}
+
+.spotify-description {
+    color: var(--text-light);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.qr-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid var(--accent);
+}
+
+.qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.qr-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(139, 111, 71, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.qr-overlay:hover {
+    background: rgba(139, 111, 71, 0.2);
+}
+
+.qr-icon {
+    font-size: 48px;
+    opacity: 0.8;
+}
+
+.spotify-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #1DB954, #1ed760);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+}
+
+.spotify-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4);
+}
+
+.spotify-icon {
+    font-size: 20px;
+}
+
+/* Love Letter Section */
+.love-letter-section {
+    padding: 40px 20px 60px;
+}
+
+.love-letter {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 48px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.letter-header {
+    margin-bottom: 32px;
+}
+
+.letter-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.letter-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--text);
+}
+
+.letter-text {
+    color: var(--text-light);
+    margin-bottom: 16px;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.letter-signature {
+    text-align: right;
+    margin-top: 32px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.signature-name {
+    font-weight: 700;
+}
+
+.reveal-button {
+    background: linear-gradient(135deg, var(--primary), var(--gold));
+    color: var(--white);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reveal-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(139, 111, 71, 0.4);
+}
+
+/* Surpresa com Vales */
+.hidden-message {
+    display: none;
+    margin-top: 24px;
+    padding: 32px 24px;
+    background: linear-gradient(135deg, var(--secondary), var(--bg));
+    border-radius: 16px;
+    animation: fadeIn 0.5s ease;
+    border: 2px solid var(--accent);
+}
+
+.hidden-message.active {
+    display: block;
+}
+
+.surprise-content {
+    text-align: center;
+}
+
+.surprise-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.surprise-subtitle {
+    color: var(--text-light);
+    margin-bottom: 24px;
+    font-size: 1rem;
+}
+
+/* Vouchers Grid dentro da surpresa */
+.vouchers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 100%;
+}
+
+.voucher-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    border: 2px solid var(--border);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.voucher-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(139, 111, 71, 0.15);
+    border-color: var(--primary);
+}
+
+.voucher-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.voucher-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.voucher-description {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.voucher-button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.voucher-button:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(107, 79, 46, 0.3);
+}
+
+/* Voucher Modal */
+.voucher-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.voucher-modal.active {
+    display: flex;
+}
+
+.voucher-modal-content {
+    position: relative;
+    max-width: 500px;
+    width: 95%;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px 20px;
+    animation: modalSlideIn 0.3s ease;
+    margin: 20px;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Classes para controle de impressão - usada via JavaScript */
+.no-print-hidden {
+    display: none !important;
+}
+
+/* Comprovante */
+.comprovante {
+    border: 3px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    background: linear-gradient(135deg, #FFFDF9 0%, #FDF8F1 100%);
+    position: relative;
+    page-break-inside: avoid;
+}
+
+.comprovante-header {
+    text-align: center;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed var(--accent);
+    position: relative;
+}
+
+.comprovante-ornament {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+}
+
+.top-left { top: -10px; left: -10px; }
+.top-right { top: -10px; right: -10px; }
+.bottom-left { bottom: -10px; left: -10px; }
+.bottom-right { bottom: -10px; right: -10px; }
+
+.comprovante-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+
+.comprovante-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.comprovante-body {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.comprovante-icon-large {
+    font-size: 56px;
+    margin-bottom: 12px;
+}
+
+.comprovante-voucher-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.comprovante-description {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.comprovante-details {
+    background: var(--secondary);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.detail-value {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.comprovante-message {
+    background: linear-gradient(135deg, var(--secondary), transparent);
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.comprovante-footer {
+    text-align: center;
+    padding-top: 12px;
+    border-top: 2px dashed var(--accent);
+    position: relative;
+}
+
+.comprovante-signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--primary);
+    font-style: italic;
+}
+
+.voucher-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.print-button {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.print-button:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.close-button {
+    background: var(--secondary);
+    color: var(--text);
+    border: 2px solid var(--border);
+}
+
+.close-button:hover {
+    background: var(--border);
+    transform: scale(1.05);
+}
+
+/* Counter */
+.counter-section {
+    padding: 40px 20px 60px;
+}
+
+.counter-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.counter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 32px;
+    color: var(--text);
+}
+
+.counter-display {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.counter-item {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 16px;
+    min-width: 100px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border);
+}
+
+.counter-number {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.counter-label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+}
+
+.footer-text {
+    margin-bottom: 8px;
+}
+
+.footer-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+    margin: 16px auto;
+}
+
+.footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+/* Animações */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===================== */
+/* ESTILOS DE IMPRESSÃO  */
+/* ===================== */
+@media print {
+    /* Reset do body */
+    body {
+        background: white !important;
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Esconder TUDO exceto o modal do comprovante */
+    body > *:not(.voucher-modal) {
+        display: none !important;
+    }
+
+    .voucher-modal {
+        position: static !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: flex-start;
+        background: white !important;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        margin: 0;
+    }
+
+    .voucher-modal-content {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        max-width: 100%;
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+        animation: none;
+    }
+
+    /* Esconder elementos de UI */
+    .no-print,
+    .modal-close,
+    .voucher-actions {
+        display: none !important;
+    }
+
+    /* Ajustar comprovante para caber em uma página */
+    .comprovante {
+        border: 2px solid #000 !important;
+        padding: 20px;
+        page-break-inside: avoid;
+        max-width: 100%;
+        margin: 0 auto;
+        background: white !important;
+    }
+
+    .comprovante-header {
+        border-bottom-color: #000 !important;
+    }
+
+    .comprovante-footer {
+        border-top-color: #000 !important;
+    }
+
+    .comprovante-ornament {
+        background: #000 !important;
+    }
+
+    .comprovante-details {
+        background: #f5f5f5 !important;
+    }
+
+    /* Forçar cores */
+    .comprovante-title,
+    .comprovante-signature,
+    .comprovante-voucher-title {
+        color: #000 !important;
+        -webkit-text-fill-color: #000 !important;
+    }
+
+    .comprovante-subtitle,
+    .comprovante-description,
+    .detail-value {
+        color: #333 !important;
+    }
+
+    .detail-label {
+        color: #000 !important;
+    }
+
+    /* Ajustar tamanhos para caber em uma página */
+    .comprovante-title {
+        font-size: 1.5rem !important;
+    }
+
+    .comprovante-voucher-title {
+        font-size: 1.3rem !important;
+    }
+
+    .comprovante-icon-large {
+        font-size: 40px !important;
+    }
+
+    .comprovante-body {
+        padding: 12px 0 !important;
+    }
+
+    .comprovante-details {
+        padding: 10px !important;
+    }
+
+    .detail-item {
+        padding: 4px 0 !important;
+    }
+
+    .comprovante-message p {
+        font-size: 0.9rem !important;
+    }
+
+    /* Garantir que o comprovante fique em uma única página */
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+}
+
+/* Estilo específico para salvar como PDF no celular */
+@media screen and (max-width: 768px) {
+    .voucher-modal-content {
+        max-width: 95%;
+        padding: 20px 15px;
+    }
+    
+    .comprovante {
+        padding: 20px 15px;
+    }
+    
+    .comprovante-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .photo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+        padding: 0 10px;
+    }
+    
+    .vouchers-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+    }
+    
+    .voucher-card {
+        padding: 16px 12px;
+    }
+    
+    .spotify-card,
+    .love-letter {
+        padding: 32px 24px;
+    }
+    
+    .counter-display {
+        gap: 12px;
+    }
+    
+    .counter-item {
+        min-width: 70px;
+        padding: 16px;
+    }
+    
+    .counter-number {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .counter-display {
+        gap: 8px;
+    }
+    
+    .counter-item {
+        min-width: calc(50% - 8px);
+        padding: 12px;
+    }
+    
+    .counter-number {
+        font-size: 1.8rem;
+    }
+    
+    .vouchers-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .voucher-icon {
+        font-size: 28px;
+    }
+    
+    .voucher-title {
+        font-size: 1rem;
+    }
+    
+    .hidden-message {
+        padding: 20px 12px;
+    }
+    
+    .surprise-title {
+        font-size: 1.4rem;
+    }
+}
