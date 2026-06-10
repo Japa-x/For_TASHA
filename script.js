@@ -164,7 +164,7 @@ function gerarCodigoVoucher() {
 
 // Função para criar partículas de celebração
 function criarParticulasCelebracao() {
-    const emojis = ['✨', '💕', '🎉', '💖', '🌟', '💝'];
+    const emojis = ['🤎', '🤎', '🤎', '🤎', '🤎', '🤎'];
     
     for (let i = 0; i < 20; i++) {
         setTimeout(() => {
@@ -223,7 +223,7 @@ async function salvarComprovanteImagem() {
     
     // Mostrar feedback de carregamento
     const textoOriginal = button.innerHTML;
-    button.innerHTML = '⏳ Gerando imagem...';
+    button.innerHTML = 'Gerando imagem...';
     button.disabled = true;
     
     try {
@@ -256,7 +256,7 @@ async function salvarComprovanteImagem() {
                         await navigator.share({
                             files: [file],
                             title: 'Vale Presente',
-                            text: 'Meu vale presente especial! 💕'
+                            text: 'Meu vale presente especial!'
                         });
                         
                         // Feedback de sucesso
@@ -316,7 +316,7 @@ function downloadImagem(canvas, nomeArquivo) {
 // Função para criar corações caindo
 function criarCoracoes() {
     const container = document.getElementById('heartsContainer');
-    const emojis = ['💕', '💖', '💗', '💝', '✨', '💑', '🌟', '🍂', '☕'];
+    const emojis = ['🤎', '🤎', '🤎', '🤎', '🤎', '🤎', '🤎', '🤎', '🤎'];
     
     setInterval(() => {
         const heart = document.createElement('span');
@@ -362,11 +362,11 @@ function revelarMensagem() {
     
     if (hiddenMessage.classList.contains('active')) {
         hiddenMessage.classList.remove('active');
-        button.innerHTML = '✨ Revele uma surpresa ✨';
+        button.innerHTML = 'Revele uma surpresa';
         button.style.background = 'linear-gradient(135deg, var(--primary), var(--gold))';
     } else {
         hiddenMessage.classList.add('active');
-        button.innerHTML = '💝 Ocultar surpresa 💝';
+        button.innerHTML = 'Ocultar surpresa';
         button.style.background = 'linear-gradient(135deg, var(--primary-dark), var(--primary))';
         
         // Scroll suave até os vales
