@@ -3,15 +3,86 @@ const fotos = [
     {
         src: 'fotos/foto1.png',
         alt: 'Nosso primeiro encontro',
-        message: 'O dia em que tudo começou... 💕'
+        message: 'Qaundo tudo começou'
     },
     {
-        src: 'fotos/foto1.png',
+        src: 'fotos/foto2.png',
+        alt: 'Nossa viagem juntos',
+        message: 'Eu não imaginava'
+    },
+    {
+        src: 'fotos/foto3.png',
+        alt: 'Momento especial',
+        message: 'Que eu seria '
+    },
+    {
+        src: 'fotos/foto4.png',
+        alt: 'Nosso primeiro encontro',
+        message: 'Tão feliz ao seu lado'
+    },
+    {
+        src: 'fotos/foto5.png',
         alt: 'Nossa viagem juntos',
         message: 'Cada lugar é especial com você 🌎'
     },
     {
-        src: 'fotos/foto1.png',
+        src: 'fotos/foto6.png',
+        alt: 'Momento especial',
+        message: 'Seu sorriso ilumina meu dia ✨'
+    },{
+        src: 'fotos/foto7.png',
+        alt: 'Nosso primeiro encontro',
+        message: 'O dia em que tudo começou... 💕'
+    },
+    {
+        src: 'fotos/foto8.png',
+        alt: 'Nossa viagem juntos',
+        message: 'Cada lugar é especial com você 🌎'
+    },
+    {
+        src: 'fotos/foto9.png',
+        alt: 'Momento especial',
+        message: 'Seu sorriso ilumina meu dia ✨'
+    },{
+        src: 'fotos/foto10.png',
+        alt: 'Nosso primeiro encontro',
+        message: 'O dia em que tudo começou... 💕'
+    },
+    {
+        src: 'fotos/foto11.png',
+        alt: 'Nossa viagem juntos',
+        message: 'Cada lugar é especial com você 🌎'
+    },
+    {
+        src: 'fotos/foto12.png',
+        alt: 'Momento especial',
+        message: 'Seu sorriso ilumina meu dia ✨'
+    },{
+        src: 'fotos/foto13.png',
+        alt: 'Nosso primeiro encontro',
+        message: 'O dia em que tudo começou... 💕'
+    },
+    {
+        src: 'fotos/foto14.png',
+        alt: 'Nossa viagem juntos',
+        message: 'Cada lugar é especial com você 🌎'
+    },
+    {
+        src: 'fotos/foto15.png',
+        alt: 'Momento especial',
+        message: 'Seu sorriso ilumina meu dia ✨'
+    },{
+        src: 'fotos/foto16.png',
+        alt: 'Nosso primeiro encontro',
+        message: 'O dia em que tudo começou... 💕'
+    },
+    {
+        src: 'fotos/foto17.png',
+        alt: 'Nossa viagem juntos',
+        message: 'Cada lugar é especial com você 🌎'
+    },
+    {
+        src: 'fotos/foto18.png',
         alt: 'Momento especial',
         message: 'Seu sorriso ilumina meu dia ✨'
     }
