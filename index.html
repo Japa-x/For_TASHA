@@ -74,18 +74,16 @@
                     </div>
                     
                     <a href="#" class="spotify-button" id="spotifyButton">
-                       
                         Abrir Playlist no Spotify
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Seção Carta de Amor com Vales -->
+        <!-- Seção Carta de Amor -->
         <section class="love-letter-section">
             <div class="love-letter">
                 <div class="letter-header">
-        
                     <h3>Uma carta para você</h3>
                 </div>
                 
@@ -112,8 +110,14 @@
                     </p>
                 </div>
                 
+                <!-- Botão para revelar surpresa (abre modal de vídeo) -->
                 <button class="reveal-button" id="revealButton">
                     Revele uma surpresa
+                </button>
+                
+                <!-- Botão para abrir presentes (vales) -->
+                <button class="gift-button" id="giftButton">
+                    Abrir presente
                 </button>
                 
                 <!-- Surpresa: Vales Presente (inicialmente oculto) -->
@@ -168,7 +172,26 @@
             </div>
         </section>
 
-        <!-- Modal do Comprovante - Otimizado para PDF/Celular -->
+        <!-- Modal de Vídeo Surpresa -->
+        <div class="video-modal" id="videoModal">
+            <div class="video-modal-content">
+                <button class="modal-close" onclick="fecharVideoModal()">&times;</button>
+                <h2 class="video-title">Uma surpresa para você 🤎</h2>
+                <div class="video-container">
+                    <video id="surpriseVideo" controls playsinline>
+                        <source src="video.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                </div>
+                <div class="video-actions">
+                    <button class="action-button close-button" onclick="fecharVideoModal()">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal do Comprovante -->
         <div class="voucher-modal" id="voucherModal">
             <div class="voucher-modal-content" id="voucherModalContent">
                 <button class="modal-close no-print" onclick="fecharVoucherModal()">&times;</button>
@@ -218,13 +241,13 @@
                 </div>
                 
                 <div class="voucher-actions no-print">
-    <button class="action-button print-button" onclick="salvarComprovanteImagem()">
-         Salvar como Imagem
-    </button>
-    <button class="action-button close-button" onclick="fecharVoucherModal()">
-        Fechar
-    </button>
-</div>
+                    <button class="action-button print-button" onclick="salvarComprovanteImagem()">
+                        Salvar como Imagem
+                    </button>
+                    <button class="action-button close-button" onclick="fecharVoucherModal()">
+                        Fechar
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -266,8 +289,7 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
-        <!-- Biblioteca para salvar como imagem -->
+    <!-- Biblioteca para salvar como imagem -->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="script.js"></script>
 </body>

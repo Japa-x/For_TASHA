@@ -458,6 +458,7 @@ body {
     font-weight: 700;
 }
 
+/* Reveal Button */
 .reveal-button {
     background: linear-gradient(135deg, var(--primary), var(--gold));
     color: var(--white);
@@ -473,6 +474,56 @@ body {
 .reveal-button:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(139, 111, 71, 0.4);
+}
+
+/* Gift Button */
+.gift-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #E8B86D, #C9A87C);
+    color: var(--white);
+    border: none;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(201, 168, 124, 0.3);
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gift-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: rotate(45deg);
+    animation: giftShine 3s ease infinite;
+}
+
+@keyframes giftShine {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+.gift-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(201, 168, 124, 0.4);
+    background: linear-gradient(135deg, #D4A055, #B8916A);
+}
+
+.gift-button:active {
+    transform: translateY(0) scale(0.98);
 }
 
 /* Surpresa com Vales */
@@ -507,7 +558,7 @@ body {
     font-size: 1rem;
 }
 
-/* Vouchers Grid dentro da surpresa */
+/* Vouchers Grid */
 .vouchers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -569,6 +620,68 @@ body {
     box-shadow: 0 4px 15px rgba(107, 79, 46, 0.3);
 }
 
+/* ===================== */
+/* VIDEO MODAL           */
+/* ===================== */
+.video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.video-modal-content {
+    position: relative;
+    max-width: 800px;
+    width: 95%;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px 20px;
+    animation: modalSlideIn 0.3s ease;
+    margin: 20px;
+    text-align: center;
+}
+
+.video-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    max-height: 70vh;
+}
+
+.video-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
 /* Voucher Modal */
 .voucher-modal {
     display: none;
@@ -608,11 +721,6 @@ body {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
-}
-
-/* Classes para controle de impressão - usada via JavaScript */
-.no-print-hidden {
-    display: none !important;
 }
 
 /* Comprovante */
@@ -865,7 +973,6 @@ body {
 /* ESTILOS DE IMPRESSÃO  */
 /* ===================== */
 @media print {
-    /* Reset do body */
     body {
         background: white !important;
         margin: 0;
@@ -874,7 +981,6 @@ body {
         print-color-adjust: exact;
     }
 
-    /* Esconder TUDO exceto o modal do comprovante */
     body > *:not(.voucher-modal) {
         display: none !important;
     }
@@ -901,14 +1007,12 @@ body {
         animation: none;
     }
 
-    /* Esconder elementos de UI */
     .no-print,
     .modal-close,
     .voucher-actions {
         display: none !important;
     }
 
-    /* Ajustar comprovante para caber em uma página */
     .comprovante {
         border: 2px solid #000 !important;
         padding: 20px;
@@ -934,7 +1038,6 @@ body {
         background: #f5f5f5 !important;
     }
 
-    /* Forçar cores */
     .comprovante-title,
     .comprovante-signature,
     .comprovante-voucher-title {
@@ -952,7 +1055,6 @@ body {
         color: #000 !important;
     }
 
-    /* Ajustar tamanhos para caber em uma página */
     .comprovante-title {
         font-size: 1.5rem !important;
     }
@@ -981,31 +1083,14 @@ body {
         font-size: 0.9rem !important;
     }
 
-    /* Garantir que o comprovante fique em uma única página */
     @page {
         size: A4;
         margin: 15mm;
     }
 }
 
-/* Estilo específico para salvar como PDF no celular */
-@media screen and (max-width: 768px) {
-    .voucher-modal-content {
-        max-width: 95%;
-        padding: 20px 15px;
-    }
-    
-    .comprovante {
-        padding: 20px 15px;
-    }
-    
-    .comprovante-title {
-        font-size: 1.5rem;
-    }
-}
-
 /* Responsividade */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .title {
         font-size: 2.5rem;
     }
@@ -1041,6 +1126,37 @@ body {
     
     .counter-number {
         font-size: 2rem;
+    }
+    
+    .voucher-modal-content {
+        max-width: 95%;
+        padding: 20px 15px;
+    }
+    
+    .comprovante {
+        padding: 20px 15px;
+    }
+    
+    .comprovante-title {
+        font-size: 1.5rem;
+    }
+    
+    .video-modal-content {
+        padding: 20px 15px;
+        max-width: 95%;
+    }
+    
+    .video-title {
+        font-size: 1.4rem;
+    }
+    
+    .video-container video {
+        max-height: 50vh;
+    }
+    
+    .gift-button {
+        padding: 14px 28px;
+        font-size: 16px;
     }
 }
 
@@ -1081,5 +1197,14 @@ body {
     
     .surprise-title {
         font-size: 1.4rem;
+    }
+    
+    .video-title {
+        font-size: 1.2rem;
+    }
+    
+    .gift-button {
+        padding: 12px 24px;
+        font-size: 15px;
     }
 }

@@ -2,89 +2,75 @@
 const fotos = [
     {
         src: 'fotos/foto1.png',
-        alt: 'Nosso primeiro encontro',
-        message: 'Qaundo tudo começou'
+        message: 'Quando tudo começou'
     },
     {
         src: 'fotos/foto2.png',
-        alt: 'Nossa viagem juntos',
         message: 'Eu não imaginava'
     },
     {
         src: 'fotos/foto3.png',
-        alt: 'Momento especial',
         message: 'Que eu seria '
     },
     {
         src: 'fotos/foto4.png',
-        alt: 'Nosso primeiro encontro',
         message: 'Tão feliz ao seu lado'
     },
     {
         src: 'fotos/foto5.png',
-        alt: 'Nossa viagem juntos',
-        message: 'Cada lugar é especial com você 🌎'
+        message: 'Cada lugar'
     },
     {
         src: 'fotos/foto6.png',
-        alt: 'Momento especial',
-        message: 'Seu sorriso ilumina meu dia ✨'
-    },{
+        message: 'Cada viagem'
+    },
+    {
         src: 'fotos/foto7.png',
-        alt: 'Nosso primeiro encontro',
-        message: 'O dia em que tudo começou... 💕'
+        message: 'Cada momento'
     },
     {
         src: 'fotos/foto8.png',
-        alt: 'Nossa viagem juntos',
-        message: 'Cada lugar é especial com você 🌎'
+        message: 'Cada sorriso seu'
     },
     {
         src: 'fotos/foto9.png',
-        alt: 'Momento especial',
-        message: 'Seu sorriso ilumina meu dia ✨'
-    },{
+        message: 'Eu amo viver contigo'
+    },
+    {
         src: 'fotos/foto10.png',
-        alt: 'Nosso primeiro encontro',
-        message: 'O dia em que tudo começou... 💕'
+        message: 'Obrigado por ser'
     },
     {
         src: 'fotos/foto11.png',
-        alt: 'Nossa viagem juntos',
-        message: 'Cada lugar é especial com você 🌎'
+        message: 'Essa mulher incrível'
     },
     {
         src: 'fotos/foto12.png',
-        alt: 'Momento especial',
-        message: 'Seu sorriso ilumina meu dia ✨'
-    },{
+        message: 'Por me fazer rir'
+    },
+    {
         src: 'fotos/foto13.png',
-        alt: 'Nosso primeiro encontro',
-        message: 'O dia em que tudo começou... 💕'
+        message: 'Por me fazer feliz'
     },
     {
         src: 'fotos/foto14.png',
-        alt: 'Nossa viagem juntos',
-        message: 'Cada lugar é especial com você 🌎'
+        message: 'Por cuidar de mim'
     },
     {
         src: 'fotos/foto15.png',
-        alt: 'Momento especial',
-        message: 'Seu sorriso ilumina meu dia ✨'
-    },{
+        message: 'Por viver comigo'
+    },
+    {
         src: 'fotos/foto16.png',
-        alt: 'Nosso primeiro encontro',
-        message: 'O dia em que tudo começou... 💕'
+        message: 'Te amo mais que tudo'
     },
     {
         src: 'fotos/foto17.png',
-        alt: 'Nossa viagem juntos',
-        message: 'Cada lugar é especial com você 🌎'
+        message: 'Você é e sempre será'
     },
     {
         src: 'fotos/foto18.png',
-        alt: 'Momento especial',
-        message: 'Seu sorriso ilumina meu dia ✨'
+        message: 'Minha preta'
     }
 ];
 
@@ -156,7 +142,7 @@ function criarGaleria() {
         const photoCard = document.createElement('div');
         photoCard.className = 'photo-card';
         photoCard.innerHTML = `
-            <img src="${foto.src}" alt="${foto.alt}" class="photo-image">
+            <img src="${foto.src}" alt="Momento especial" class="photo-image">
             <div class="photo-overlay">
                 <p class="photo-message">${foto.message}</p>
             </div>
@@ -175,7 +161,7 @@ function abrirModal(foto) {
     const modalMessage = document.getElementById('modalMessage');
     
     modalImage.src = foto.src;
-    modalImage.alt = foto.alt;
+    modalImage.alt = 'Momento especial';
     modalMessage.textContent = foto.message;
     
     modal.classList.add('active');
@@ -289,7 +275,6 @@ function fecharVoucherModal() {
 // Função para salvar comprovante como imagem
 async function salvarComprovanteImagem() {
     const comprovante = document.getElementById('comprovante');
-    const modalContent = document.getElementById('voucherModalContent');
     const button = document.querySelector('.print-button');
     
     // Mostrar feedback de carregamento
@@ -300,7 +285,7 @@ async function salvarComprovanteImagem() {
     try {
         // Configurações para melhor qualidade
         const canvas = await html2canvas(comprovante, {
-            scale: 2, // Melhor qualidade (2x)
+            scale: 2,
             useCORS: true,
             allowTaint: true,
             backgroundColor: '#FFFDF9',
@@ -331,20 +316,17 @@ async function salvarComprovanteImagem() {
                         });
                         
                         // Feedback de sucesso
-                        button.innerHTML = '✅ Salvo com sucesso!';
+                        button.innerHTML = 'Salvo com sucesso!';
                         button.style.background = '#4CAF50';
                     } catch (shareError) {
-                        // Se o usuário cancelar o compartilhamento, faz download direto
                         if (shareError.name !== 'AbortError') {
                             downloadImagem(canvas, nomeArquivo);
                         }
                     }
                 } else {
-                    // Se não pode compartilhar, faz download
                     downloadImagem(canvas, nomeArquivo);
                 }
             } else {
-                // Desktop ou navegador sem suporte a compartilhamento
                 downloadImagem(canvas, nomeArquivo);
             }
             
@@ -359,7 +341,7 @@ async function salvarComprovanteImagem() {
         
     } catch (error) {
         console.error('Erro ao gerar imagem:', error);
-        button.innerHTML = '❌ Erro! Tente novamente';
+        button.innerHTML = 'Erro! Tente novamente';
         button.style.background = '#f44336';
         
         setTimeout(() => {
@@ -372,15 +354,13 @@ async function salvarComprovanteImagem() {
 
 // Função auxiliar para download da imagem
 function downloadImagem(canvas, nomeArquivo) {
-    // Criar link de download
     const link = document.createElement('a');
     link.download = nomeArquivo;
     link.href = canvas.toDataURL('image/png', 1.0);
     link.click();
     
-    // Feedback visual
     const button = document.querySelector('.print-button');
-    button.innerHTML = '✅ Imagem salva!';
+    button.innerHTML = 'Imagem salva!';
     button.style.background = '#4CAF50';
 }
 
@@ -426,19 +406,62 @@ function atualizarContador() {
     setInterval(update, 1000);
 }
 
-// Função para revelar mensagem surpresa (agora com os vales)
-function revelarMensagem() {
+// Função para abrir modal de vídeo surpresa
+function abrirVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('surpriseVideo');
+    
+    modal.classList.add('active');
+    
+    // Tenta dar play no vídeo automaticamente
+    setTimeout(() => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('Autoplay bloqueado, usuário precisa dar play manualmente');
+            });
+        }
+    }, 500);
+    
+    // Pausa a música de fundo enquanto o vídeo estiver aberto
+    if (musicaTocando) {
+        document.getElementById('bgMusic').pause();
+    }
+}
+
+// Função para fechar modal de vídeo
+function fecharVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('surpriseVideo');
+    
+    // Pausa o vídeo
+    video.pause();
+    
+    // Fecha o modal
+    modal.classList.remove('active');
+    
+    // Retoma a música de fundo se estava tocando
+    if (musicaTocando) {
+        document.getElementById('bgMusic').play().catch(() => {});
+    }
+}
+
+// Função para abrir os vales presente
+function abrirPresentes() {
     const hiddenMessage = document.getElementById('hiddenMessage');
-    const button = document.getElementById('revealButton');
+    const button = document.getElementById('giftButton');
     
     if (hiddenMessage.classList.contains('active')) {
         hiddenMessage.classList.remove('active');
-        button.innerHTML = 'Revele uma surpresa';
-        button.style.background = 'linear-gradient(135deg, var(--primary), var(--gold))';
+        button.innerHTML = 'Abrir presente';
+        button.style.background = 'linear-gradient(135deg, #E8B86D, #C9A87C)';
     } else {
         hiddenMessage.classList.add('active');
-        button.innerHTML = 'Ocultar surpresa';
+        button.innerHTML = 'Fechar presente';
         button.style.background = 'linear-gradient(135deg, var(--primary-dark), var(--primary))';
+        
+        // Efeito de celebração ao abrir os presentes
+        criarParticulasCelebracao();
         
         // Scroll suave até os vales
         setTimeout(() => {
@@ -484,8 +507,16 @@ document.getElementById('photoModal').addEventListener('click', (e) => {
     }
 });
 
-document.getElementById('revealButton').addEventListener('click', revelarMensagem);
+document.getElementById('revealButton').addEventListener('click', abrirVideoModal);
+document.getElementById('giftButton').addEventListener('click', abrirPresentes);
 document.getElementById('musicControl').addEventListener('click', toggleMusica);
+
+// Fechar modal de vídeo clicando fora
+document.getElementById('videoModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+        fecharVideoModal();
+    }
+});
 
 // Fechar voucher modal clicando fora
 document.getElementById('voucherModal').addEventListener('click', (e) => {
@@ -499,6 +530,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         fecharModal();
         fecharVoucherModal();
+        fecharVideoModal();
     }
 });
 
